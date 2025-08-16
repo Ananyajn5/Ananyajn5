@@ -1,0 +1,38 @@
+def bidirectional_visitor_counter():
+    """Simulates a bidirectional visitor counter."""
+    current_visitors = 0
+    total_entries = 0
+    total_exits = 0
+
+    print("Bidirectional Visitor Counter Simulation")
+    print("Enter 'in' for a visitor entering, 'out' for a visitor exiting, 'reset' to clear, or 'quit' to exit.")
+
+    while True:
+        action = input("Action: ").lower().strip()
+
+        if action == 'in':
+            current_visitors += 1
+            total_entries += 1
+            print(f"Visitor entered. Current visitors: {current_visitors}")
+        elif action == 'out':
+            if current_visitors > 0:
+                current_visitors -= 1
+                total_exits += 1
+                print(f"Visitor exited. Current visitors: {current_visitors}")
+            else:
+                print("No visitors inside to exit.")
+        elif action == 'reset':
+            current_visitors = 0
+            total_entries = 0
+            total_exits = 0
+            print("Counter reset. Current visitors: 0")
+        elif action == 'quit':
+            print("Exiting visitor counter simulation.")
+            break
+        else:
+            print("Invalid action. Please enter 'in', 'out', 'reset', or 'quit'.")
+
+        print(f"Total entries: {total_entries}, Total exits: {total_exits}")
+
+if __name__ == "__main__":
+    bidirectional_visitor_counter()
