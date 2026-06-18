@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Travel Recommendation</title>
+
+<style>
+
+body{
+font-family: Arial, sans-serif;
+margin:0;
+padding:0;
+
+background-image:url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e");
+background-size:cover;
+background-position:center;
+background-attachment:fixed;
+
+display:flex;
+justify-content:center;
+align-items:center;
+min-height:100vh;
+}
+
+/* Main Container */
+
+.container{
+
+background:rgba(255,255,255,0.92);
+backdrop-filter:blur(10px);
+
+padding:40px;
+border-radius:20px;
+
+width:750px;
+
+box-shadow:0 10px 40px rgba(0,0,0,0.3);
+
+animation:fadeIn 1s ease;
+
+}
+
+/* Title */
+
+h1{
+text-align:center;
+color:#333;
+margin-bottom:20px;
+}
+
+/* Destination Image */
+
+.destination-img{
+width:100%;
+border-radius:15px;
+margin-bottom:20px;
+}
+
+/* Budget box */
+
+.budget{
+
+background:#f5f7ff;
+padding:15px;
+border-radius:10px;
+margin-bottom:20px;
+font-size:18px;
+
+}
+
+/* Section cards */
+
+.card{
+
+background:white;
+padding:20px;
+border-radius:12px;
+margin-bottom:20px;
+
+box-shadow:0 5px 15px rgba(0,0,0,0.1);
+
+}
+
+/* Hotel card */
+
+.hotel-card{
+
+background:#fafafa;
+padding:12px;
+margin:10px 0;
+border-radius:10px;
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+box-shadow:0 3px 10px rgba(0,0,0,0.1);
+
+}
+
+/* Button */
+
+button{
+
+background:#0077ff;
+color:white;
+border:none;
+padding:8px 16px;
+
+border-radius:8px;
+cursor:pointer;
+
+transition:0.3s;
+
+}
+
+button:hover{
+
+background:#0055cc;
+transform:scale(1.05);
+
+}
+
+/* Back button */
+
+.back{
+
+display:block;
+margin-top:20px;
+text-align:center;
+text-decoration:none;
+
+background:#333;
+color:white;
+
+padding:10px;
+border-radius:8px;
+
+}
+
+.back:hover{
+
+background:black;
+
+}
+
+/* Map */
+
+iframe{
+border-radius:12px;
+}
+
+/* Animation */
+
+@keyframes fadeIn{
+
+from{
+opacity:0;
+transform:translateY(30px);
+}
+
+to{
+opacity:1;
+transform:translateY(0);
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🌍 Travel Plan for {{ destination }}</h1>
+
+<img src="{{ image }}" class="destination-img">
+
+<div class="budget">
+💰 <b>Budget:</b> ₹{{ budget }}
+</div>
+
+<!-- Hotels -->
+
+<div class="card">
+
+<h2>🏨 Hotels</h2>
+
+{% if hotels %}
+
+{% for hotel in hotels %}
+
+<div class="hotel-card">
+
+<span>{{ hotel.name }} - ₹{{ hotel.price }}</span>
+
+<button onclick="bookHotel('{{ hotel.name }}')">Book</button>
+
+</div>
+
+{% endfor %}
+
+{% else %}
+
+<p>No hotels available within budget.</p>
+
+{% endif %}
+
+</div>
+
+<!-- Places -->
+
+<div class="card">
+
+<h2>📍 Places to Visit</h2>
+
+{% if places %}
+
+<ul>
+
+{% for place in places %}
+
+<li>{{ place.name }} - ₹{{ place.price }}</li>
+
+{% endfor %}
+
+</ul>
+
+{% else %}
+
+<p>No places available within budget.</p>
+
+{% endif %}
+
+</div>
+
+<!-- AI Itinerary -->
+
+<div class="card">
+
+<h2>🧠 AI Travel Itinerary</h2>
+
+<ul>
+
+{% for day in itinerary %}
+
+<li>{{ day }}</li>
+
+{% endfor %}
+
+</ul>
+
+</div>
+
+<!-- Map -->
+
+<div class="card">
+
+<h2>📍 Location Map</h2>
+
+<iframe
+width="100%"
+height="400"
+loading="lazy"
+allowfullscreen
+src="https://www.google.com/maps?q={{ destination }}&output=embed">
+</iframe>
+
+</div>
+
+<a href="/" class="back">⬅ Back</a>
+
+</div>
+
+<script>
+
+function bookHotel(name){
+alert("✅ Hotel " + name + " booked successfully!");
+}
+
+</script>
+
+</body>
+</html>
+

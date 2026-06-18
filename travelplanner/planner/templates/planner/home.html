@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Travel Planner</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+/* Background */
+
+body{
+background:url("https://images.unsplash.com/photo-1501785888041-af3ef285b470");
+background-size:cover;
+background-position:center;
+min-height:100vh;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+}
+
+/* Glass Container */
+
+.container{
+background:rgba(255,255,255,0.2);
+backdrop-filter:blur(12px);
+padding:40px;
+border-radius:20px;
+width:380px;
+text-align:center;
+box-shadow:0 10px 25px rgba(0,0,0,0.2);
+margin-bottom:20px;
+}
+
+/* Gradient Heading */
+
+h1{
+font-size:32px;
+background:linear-gradient(45deg,#ff7e5f,#feb47b);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+margin-bottom:20px;
+}
+
+/* Inputs */
+
+input{
+width:100%;
+padding:12px;
+margin:10px 0;
+border:none;
+border-radius:10px;
+outline:none;
+}
+
+/* Buttons */
+
+button{
+background:linear-gradient(45deg,#0077ff,#00c6ff);
+color:white;
+border:none;
+padding:12px;
+width:100%;
+border-radius:10px;
+cursor:pointer;
+font-weight:bold;
+transition:0.3s;
+}
+
+button:hover{
+transform:scale(1.05);
+}
+
+/* Chatbot */
+
+.chatbot{
+background:rgba(255,255,255,0.2);
+backdrop-filter:blur(10px);
+padding:25px;
+border-radius:20px;
+width:380px;
+text-align:center;
+margin-top:15px;
+color:white;
+box-shadow:0 10px 25px rgba(0,0,0,0.2);
+}
+
+.chatbot input{
+width:65%;
+padding:10px;
+border-radius:8px;
+border:none;
+}
+
+.chatbot button{
+width:30%;
+padding:10px;
+margin-left:5px;
+}
+
+/* Voice assistant */
+
+.voice-box button{
+background:linear-gradient(45deg,#28a745,#5cff87);
+}
+
+/* Replies */
+
+#botReply,#aiReply{
+margin-top:10px;
+font-weight:bold;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- Travel Planner -->
+
+<div class="container">
+
+<h1>✈ Travel Planner</h1>
+
+<form action="/recommend/" method="GET">
+
+<input type="text" name="destination" placeholder="Enter Destination" required>
+
+<input type="number" name="budget" placeholder="Enter Budget ₹" required>
+
+<button type="submit">Get Recommendation</button>
+
+</form>
+
+</div>
+
+
+<!-- AI Chatbot -->
+
+<div class="chatbot">
+
+<h3>🤖 Travel Assistant</h3>
+
+<input type="text" id="userInput" placeholder="Ask about travel...">
+
+<button onclick="reply()">Ask</button>
+
+<p id="botReply"></p>
+
+</div>
+
+
+<!-- Voice AI Assistant -->
+
+<div class="chatbot voice-box">
+
+<h3>🎤 Voice Travel Assistant</h3>
+
+<button onclick="startListening()">🎙 Speak Destination</button>
+
+<p><b>You said:</b> <span id="speechText"></span></p>
+
+<p><b>Travel Suggestion:</b></p>
+
+<p id="Reply"></p>
+
+</div>
+
+
+<script>
+
+/* Text Chatbot */
+
+function reply(){
+
+var input=document.getElementById("userInput").value.toLowerCase();
+
+var responses={
+
+"budget":"Try traveling to Bali for budget trips!",
+
+"beach":"You should visit Bali or Maldives.",
+
+"city":"New York and Paris are amazing cities.",
+
+"india":"You can visit Goa, Manali, or Kerala.",
+
+"mountain":"Switzerland and Manali are great mountain destinations."
+
+};
+
+document.getElementById("botReply").innerHTML=
+responses[input] || "I recommend visiting Paris or Bali!";
+
+}
+
+
+/* Voice Assistant */
+
+function startListening(){
+
+const recognition=new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+
+recognition.lang="en-US";
+
+recognition.start();
+
+recognition.onresult=function(event){
+
+var speech=event.results[0][0].transcript;
+
+document.getElementById("speechText").innerHTML=speech;
+
+generateTrip(speech);
+
+}
+
+}
+
+
+/* Trip Generator */
+
+function generateTrip(destination){
+
+var plans={
+
+"paris":"✈ Trip Plan: Paris<br>Day 1: Eiffel Tower<br>Day 2: Louvre Museum<br>Day 3: Seine River Cruise",
+
+"bali":"✈ Trip Plan: Bali<br>Day 1: Beach Relaxation<br>Day 2: Ubud Temple<br>Day 3: Waterfall Tour",
+
+"india":"✈ Trip Plan: India<br>Day 1: Taj Mahal<br>Day 2: Jaipur Palace<br>Day 3: Goa Beach",
+
+"maldives":"✈ Trip Plan: Maldives<br>Day 1: Beach Resort<br>Day 2: Scuba Diving<br>Day 3: Island Tour"
+
+};
+
+var result=plans[destination.toLowerCase()] ||
+
+"🌍 Suggestion: Visit Bali for beaches or Paris for city tours.";
+
+document.getElementById("Reply").innerHTML=result;
+
+}
+
+</script>
+
+</body>
+</html>
