@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Live Queue Display</title>
+
+<meta http-equiv="refresh" content="5">
+
+<style>
+
+body{
+font-family:Arial;
+background:linear-gradient(135deg,#1e3c72,#2a5298);
+height:100vh;
+margin:0;
+display:flex;
+justify-content:center;
+align-items:center;
+color:white;
+}
+
+.board{
+
+background:rgba(0,0,0,0.6);
+padding:40px;
+border-radius:15px;
+width:700px;
+text-align:center;
+box-shadow:0px 10px 25px rgba(0,0,0,0.4);
+
+}
+
+h1{
+margin-bottom:30px;
+font-size:36px;
+}
+
+.section{
+
+margin:20px 0;
+padding:20px;
+border-radius:10px;
+
+}
+
+.now{
+
+background:#e74c3c;
+
+}
+
+.next{
+
+background:#f39c12;
+
+}
+
+.waiting{
+
+background:#27ae60;
+
+}
+
+.token{
+
+font-size:50px;
+font-weight:bold;
+
+}
+
+.waitlist{
+
+font-size:28px;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="board">
+
+<h1>Smart Queue Display</h1>
+
+<div class="section now">
+
+<h2>NOW SERVING</h2>
+
+<div class="token">
+
+{% if now_serving %}
+{{now_serving.token_number}}
+{% else %}
+--
+{% endif %}
+
+</div>
+
+</div>
+
+
+<div class="section next">
+
+<h2>NEXT TOKEN</h2>
+
+<div class="token">
+
+{% if next_token %}
+{{next_token.token_number}}
+{% else %}
+--
+{% endif %}
+
+</div>
+
+</div>
+
+
+<div class="section waiting">
+
+<h2>WAITING TOKENS</h2>
+
+<div class="waitlist">
+
+{% for q in waiting %}
+{{q.token_number}},
+{% endfor %}
+
+</div>
+
+</div>
+
+</div>
+
+</body>
+</html>

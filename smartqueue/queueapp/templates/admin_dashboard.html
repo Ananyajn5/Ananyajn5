@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Admin Queue Dashboard</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:#f4f6f8;
+}
+
+h2{
+text-align:center;
+}
+
+table{
+width:80%;
+margin:auto;
+border-collapse:collapse;
+}
+
+th{
+background:#2c3e50;
+color:white;
+padding:10px;
+}
+
+td{
+padding:10px;
+border:1px solid #ddd;
+text-align:center;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h2>Queue Management Dashboard</h2>
+
+<table>
+
+<tr>
+
+<th>User</th>
+<th>Service</th>
+<th>Token</th>
+<th>Status</th>
+
+</tr>
+
+{% for q in queues %}
+
+<tr>
+
+<td>{{q.user.username}}</td>
+<td>{{q.service.name}}</td>
+<td>{{q.token_number}}</td>
+<td>{{q.status}}</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Smart Queue System</title>
+
+<style>
+
+body{
+font-family: Arial;
+background-color:#f4f4f4;
+text-align:center;
+}
+
+h1{
+margin-top:40px;
+}
+
+.service-container{
+display:flex;
+justify-content:center;
+gap:40px;
+margin-top:50px;
+}
+
+.card{
+width:250px;
+height:180px;
+border-radius:10px;
+color:white;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+font-size:20px;
+font-weight:bold;
+text-decoration:none;
+box-shadow:0px 4px 10px rgba(0,0,0,0.3);
+transition:transform 0.3s;
+}
+
+.card:hover{
+transform:scale(1.05);
+}
+
+.hospital{
+background-image:url("https://images.unsplash.com/photo-1586773860418-d37222d8fce3");
+background-size:cover;
+background-position:center;
+}
+
+.bank{
+background-image:url("https://images.unsplash.com/photo-1565372914578-9e6e7e96bff4");
+background-size:cover;
+background-position:center;
+}
+
+.office{
+background-image:url("https://images.unsplash.com/photo-1497366216548-37526070297c");
+background-size:cover;
+background-position:center;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>Smart Queue Management System</h1>
+
+<h3>Select Service</h3>
+
+<div class="service-container">
+
+<a href="/join/1" class="card hospital">
+Hospital
+</a>
+
+<a href="/join/2" class="card bank">
+Bank
+</a>
+
+<a href="/join/3" class="card office">
+Office
+</a>
+
+</div>
+
+</body>
+</html>

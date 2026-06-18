@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Queue Token</title>
+
+<meta http-equiv="refresh" content="10">
+
+<style>
+
+body{
+font-family:Arial;
+background:#f4f6f8;
+text-align:center;
+}
+
+.container{
+margin-top:80px;
+background:white;
+padding:40px;
+width:400px;
+margin-left:auto;
+margin-right:auto;
+border-radius:10px;
+box-shadow:0px 4px 15px rgba(0,0,0,0.2);
+}
+
+.token{
+font-size:50px;
+color:#3498db;
+}
+
+.progress{
+width:100%;
+background:#ddd;
+height:25px;
+border-radius:20px;
+overflow:hidden;
+margin-top:20px;
+}
+
+.bar{
+height:100%;
+background:#27ae60;
+width:{{wait}}%;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>{{service.name}} Queue</h2>
+
+<p>Your Token</p>
+
+<div class="token">
+
+{{token}}
+
+</div>
+
+<p>Estimated Wait : {{wait}} minutes</p>
+
+<div class="progress">
+<div class="bar"></div>
+</div>
+
+<br>
+
+<a href="/dashboard">Dashboard</a>
+
+</div>
+
+</body>
+</html>
